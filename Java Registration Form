@@ -1,0 +1,75 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class StudentReg extends JFrame implements ActionListener {
+    JLabel lb1, lb2, lb3, lb4, lb5, lb6;
+    JTextField name, roll;
+    JCheckBox cb1, cb2;
+    JRadioButton rb1, rb2;
+    JButton b;
+    String msg = "";
+    JTextArea ta;
+    StudentReg(){
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        lb1=new JLabel("Student Registration Form: ");
+        c.add(lb1);
+        //Name and it's text field
+        lb2=new JLabel("Name: ");
+        name=new JTextField("Enter Your Name: ");
+        c.add(lb2);
+        c.add(name);
+        //Roll and it's text field
+        lb3=new JLabel("Roll: ");
+        roll=new JTextField("Enter Your Roll: ");
+        c.add(lb3);
+        c.add(roll);
+        //Skill and it's checkbox
+        lb4=new JLabel("Skill: ");
+        cb1=new JCheckBox("Java",true);
+        cb2=new JCheckBox("HTML");
+        c.add(lb4);
+        c.add(cb1);
+        c.add(cb2);
+        //Course and it's Radio Button
+        lb5=new JLabel("Courses: ");
+        rb1=new JRadioButton("MCA",true);
+        rb2=new JRadioButton("MSc.");
+        c.add(lb5);
+        c.add(rb1);
+        c.add(rb2);
+        //Suggestion Feedback area
+        lb6=new JLabel("Suggestion/Feedback");
+        ta=new JTextArea(10,20);
+        c.add(lb6);
+        c.add(ta);
+        //Submit Button
+        b=new JButton("Submit: ");
+        c.add(b);
+        //Action Listener for buttons and checkbox
+        cb1.addActionListener(this);
+        cb2.addActionListener(this);
+        rb1.addActionListener(this);
+        rb2.addActionListener(this);
+        b.addActionListener(this);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent ae){
+        if(cb1.isSelected()) msg+="Java\n";
+        if(cb2.isSelected()) msg+="HTML\n";
+        if(rb1.isSelected()) msg+="MCA\n";
+            else {
+                msg+="MSc";
+                  }   
+        if(ae.getSource() == b) msg += ta.getText();
+            else { msg += "";
+                  }
+    }
+    public static void main(String[] args){
+        StudentReg obj=new StudentReg();
+        obj.setTitle("Registration Form: ");
+        obj.setSize(400, 300);
+        obj.setVisible(true);
+    }
+}
